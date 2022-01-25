@@ -59,17 +59,17 @@ public class MainActivityTest{
         solo.clickOnButton("ADD CITY"); //Click ADD CITY Button
 
         //Get view for EditText and enter a city name
-        solo.enterText((EditText) solo.getView(R.id.editText_name), "Edmonton");
+        solo.enterText((EditText) solo.getView(R.id.editText_name), "Roll : 1707082");
         solo.clickOnButton("CONFIRM"); //Select CONFIRM Button
         solo.clearEditText((EditText) solo.getView(R.id.editText_name)); //Clear the EditText
 
         /* True if there is any text: Edmonton on the screen, wait at least 2 seconds and
         find minimum one match. */
-        assertTrue(solo.waitForText("Edmonton", 1, 2000));
+        assertTrue(solo.waitForText("Roll : 1707082", 1, 2000));
 
         solo.clickOnButton("ClEAR ALL"); //Select ClEAR ALL
         //True if there is no text: Edmonton on the screen
-        assertFalse(solo.searchText("Edmonton"));
+        assertFalse(solo.searchText("Roll : 1707082"));
 
     }
 
@@ -81,14 +81,23 @@ public class MainActivityTest{
         solo.assertCurrentActivity("Wrong Activity", MainActivity.class);
 
         solo.clickOnButton("ADD CITY");
-        solo.enterText((EditText) solo.getView(R.id.editText_name), "Edmonton");
+        solo.enterText((EditText) solo.getView(R.id.editText_name), "Roll : 1707082");
         solo.clickOnButton("CONFIRM");
-        solo.waitForText("Edmonton", 1, 2000);
+        solo.waitForText("Roll : 1707082", 1, 2000);
         // Get MainActivity to access its variables and methods.
         MainActivity activity = (MainActivity) solo.getCurrentActivity();
         final ListView cityList = activity.cityList; // Get the listview
         String city = (String) cityList.getItemAtPosition(0); // Get item from first position
-        assertEquals("Edmonton", city);
+        assertEquals("Roll : 1707082", city);
+    }
+
+    /**
+     * switching between activities
+     */
+    @Test
+    public void switchactivities(){
+        solo.clickOnButton("Show Activity");
+        solo.clickOnButton("Main Activity");
     }
 
     /**
